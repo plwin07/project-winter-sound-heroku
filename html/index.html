@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{ template "head" "Home" }}
+    <body>
+        {{ template "nav" }}
+        <div class="wrapper">
+            {{/* intro text */}}
+            <h1 class="title">Welcome to Winter Sound events</h1>
+            <p>
+                Hi, today is {{.today.Format "Jan 02, 2006"}}
+            </p>
+            {{/* create new event */}}
+            <a href="/events/new" class="btn btn-primary">Create new event</a>
+            <br/><br/>
+            {{/* list existing events */}}
+            {{/* <ul>
+                {{range .events}}
+                    <li>
+                        <a href="/events/{{.ID}}">{{.Title}}</a>
+                        at
+                        <time>
+                            {{.Date.Format "2006-01-02T15:04:05"}}
+                        </time>
+                    </li>
+                {{end}}
+            </ul> */}}
+            <div class="card-grid">
+                {{range .events}}
+                    <div class="card">
+                        <img src="{{.Image}}" class="card-img-top card-image" alt="{{.Title}}">
+                        <div class="card-body card-body-flex">
+                            <div class="top">
+                                <h5 class="card-title">{{.Title}}</h5>
+                                <p class="card-text">
+                                    <time>
+                                        {{.Date.Format "2006-01-02T15:04:05"}}
+                                    </time>
+                                </p>
+                            </div>
+                            <div class="bottom">
+                                <a href="/events/{{.ID}}" class="btn btn-primary">Go to event</a>
+                            </div>
+                        </div>
+                    </div>
+                {{end}}
+            </div>
+        </div>
+        {{template "footer"}}
+    </body>
+</html>
